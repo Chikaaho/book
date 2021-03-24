@@ -31,7 +31,6 @@ public class UserController {
     public String loginCheck(@RequestParam String username, @RequestParam String password, Model model) {
         TbUser tbUser = userService.selectUser(username, password);
         if (tbUser == null) {
-            int a = 0;
             model.addAttribute("LOGIN_ERROR_MESSAGE", "账号或密码错误，请重新输入。");
             return "login";
         }
