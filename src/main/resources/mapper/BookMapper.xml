@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.books.mapper.BookMapper">
+    <resultMap id="BookMapper" type="com.example.books.pojo.TbBook">
+        <id column="book_id" jdbcType="BIGINT" property="bookId"/>
+        <id column="book_name" jdbcType="VARCHAR" property="bookName"/>
+        <id column="book_msg" jdbcType="VARCHAR" property="bookMsg"/>
+        <id column="book_stock" jdbcType="INTEGER" property="bookStock"/>
+        <id column="book_number" jdbcType="INTEGER" property="bookNumber"/>
+    </resultMap>
+    <insert id="addBook" parameterType="int">
+        insert into db_library.tb_books
+            (book_name, book_msg, book_stock, book_number)
+        values (#{book_name}, #{book_msg}, #{book_stock}, #{book_number});
+    </insert>
+    <update id="updateBook" parameterType="int">
+        update db_library.tb_books
+        set book_name   = #{book_name},
+            book_msg    = #{book_msg},
+            book_stock  = #{book_stock},
+            book_number = #{book_number}
+        where book_id = #{book_id};
+    </update>
+    <delete id="removeBook" parameterType="int">
+        delete
+        from db_library.tb_books
+        where book_id = #{book_id};
+    </delete>
+    <select id="selectBook" resultType="com.example.books.pojo.TbBook" parameterType="List">
+        select *
+        from db_library.tb_books;
+    </select>
+    <select id="selectBookByNumber" resultType="com.example.books.pojo.TbBook"
+            parameterType="com.example.books.pojo.TbBook">
+        select *
+        from db_library.tb_books
+        where book_number like #{%book_number%};
+    </select>
+    <select id="selectBookByName" resultType="com.example.books.pojo.TbBook"
+            parameterType="com.example.books.pojo.TbBook">
+        select *
+        from db_library.tb_books
+        where book_name like #{%book_name%};
+    </select>
+
+</mapper>

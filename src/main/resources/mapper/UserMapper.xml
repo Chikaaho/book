@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.books.mapper.UserMapper">
+    <resultMap id="UserMapper" type="com.example.books.pojo.TbUser">
+        <id column="user_id" jdbcType="BIGINT" property="userId"/>
+        <id column="username" jdbcType="VARCHAR" property="username"/>
+        <id column="password" jdbcType="VARCHAR" property="password"/>
+        <id column="user_number" jdbcType="INTEGER" property="userNumber"/>
+        <id column="classname" jdbcType="VARCHAR" property="classname"/>
+    </resultMap>
+    <insert id="registUser">
+
+    </insert>
+    <update id="updateUser">
+
+    </update>
+    <delete id="removeUser">
+
+    </delete>
+    <select id="selectUserByName" resultType="com.example.books.pojo.TbUser">
+
+    </select>
+    <select id="selectUserByNumber" resultType="com.example.books.pojo.TbUser">
+        select *
+        from db_library.tb_user
+        where
+        user_number like #{%user_number%}
+    </select>
+    <select id="selectUserByClassName" resultType="com.example.books.pojo.TbUser">
+
+    </select>
+    <select id="selectUser" resultType="com.example.books.pojo.TbUser" parameterType="com.example.books.pojo.TbUser">
+        select *
+        from db_library.tb_user
+        where
+        username = #{username}
+        and
+        password = #{password};
+    </select>
+
+
+</mapper>

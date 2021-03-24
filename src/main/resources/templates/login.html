@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/vue/vue.js"></script>
+    <script src="../static/axios-master/dist/axios.js"></script>
+</head>
+<body>
+<div id="App">
+    <h1>test login</h1>
+    <div>
+        <p th:text="${msg}"></p>
+    </div>
+</div>
+<script>
+    axios.defaults.headers.post['Content-Type'] = 'application/json';
+    let vue = new Vue({
+        el: '#App',
+        data() {
+            return {
+                info: {
+                    stu_id: null,
+                    stu_name: null
+                }
+            }
+        },
+        mounted() {
+            axios.post("/MyAllDemoAPI/check").then(response => (this.info = response.data));
+        }
+    });
+</script>
+</body>
+</html>
