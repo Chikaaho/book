@@ -8,35 +8,50 @@
         <id column="user_number" jdbcType="INTEGER" property="userNumber"/>
         <id column="classname" jdbcType="VARCHAR" property="classname"/>
     </resultMap>
-    <insert id="registUser">
-
+    <insert id="registUser" parameterType="int">
+        insert into db_library.tb_users
+            (username, password, user_number, classname)
+        values
+            (#{user.getUsername()}, #{user.getPassword()}, #{user.getUserNumber}, #{user.getClassname});
     </insert>
-    <update id="updateUser">
-
+    <update id="updateUser" parameterType="int">
+        update db_library.tb_users
+        set
+            username = #{user.getUsername()},
+            password = #{user.getPassword()},
+            user_number = #{user.getUserNumber},
+            classname = #{user.getClassname}
+        where user_id = #{user_id}
     </update>
-    <delete id="removeUser">
-
+    <delete id="removeUser" parameterType="int">
+        delete
+        from db_library.tb_users
+        where user_id = #{user_id}
     </delete>
     <select id="selectUserByName" resultType="com.example.books.pojo.TbUser">
-
+        select *
+        from db_library.tb_users
+        where username
+        like
+        #{%username%}
     </select>
     <select id="selectUserByNumber" resultType="com.example.books.pojo.TbUser">
         select *
-        from db_library.tb_user
-        where
-        user_number like #{%user_number%}
+        from db_library.tb_users
+        where user_number like #{%user_number%}
     </select>
     <select id="selectUserByClassName" resultType="com.example.books.pojo.TbUser">
-
+        select *
+        from db_library.tb_users
+        where classname
+        like
+        #{%classname%}
     </select>
     <select id="selectUser" resultType="com.example.books.pojo.TbUser" parameterType="com.example.books.pojo.TbUser">
         select *
-        from db_library.tb_user
-        where
-        username = #{username}
-        and
-        password = #{password};
+        from db_library.tb_users
+        where username = #{username}
+        and password = #{password};
     </select>
-
 
 </mapper>

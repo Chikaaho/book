@@ -11,14 +11,14 @@
     <insert id="addBook" parameterType="int">
         insert into db_library.tb_books
             (book_name, book_msg, book_stock, book_number)
-        values (#{book_name}, #{book_msg}, #{book_stock}, #{book_number});
+        values (#{book.getBookName()}, #{book.getBookMsg()}, #{book.getBookStock()}, #{book.getBookNumber()});
     </insert>
     <update id="updateBook" parameterType="int">
         update db_library.tb_books
-        set book_name   = #{book_name},
-            book_msg    = #{book_msg},
-            book_stock  = #{book_stock},
-            book_number = #{book_number}
+        set book_name   = #{book.getBookName()},
+            book_msg    = #{book.getBookMsg()},
+            book_stock  = #{book.getBookStock()},
+            book_number = #{book.getBookNumber()}
         where book_id = #{book_id};
     </update>
     <delete id="removeBook" parameterType="int">
@@ -40,7 +40,7 @@
             parameterType="com.example.books.pojo.TbBook">
         select *
         from db_library.tb_books
-        where book_name like #{%book_name%};
+        where book_name like #{"'" + %book_name% + "'"};
     </select>
 
 </mapper>
