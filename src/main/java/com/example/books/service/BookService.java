@@ -28,4 +28,7 @@ public interface BookService {
     @ApiModelProperty("根据编号查询")
     TbBook selectBookByNumber(@Param("book_number") long book_number);
 
+    @ApiModelProperty("Id查询")
+    TbBook selectBookById(@Param("bookId") long bookId);
+
 }

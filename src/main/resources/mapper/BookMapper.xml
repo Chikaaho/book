@@ -40,7 +40,12 @@
             parameterType="com.example.books.pojo.TbBook">
         select *
         from db_library.tb_books
-        where book_name like #{"'" + %book_name% + "'"};
+        where book_name like #{%book_name%};
+    </select>
+    <select id="selectBookById" resultType="com.example.books.pojo.TbBook">
+        select *
+        from db_library.tb_books
+        where book_id = #{bookId};
     </select>
 
 </mapper>

@@ -3,6 +3,8 @@ package com.example.books.service.impl;
 import com.example.books.mapper.BookMapper;
 import com.example.books.pojo.TbBook;
 import com.example.books.service.BookService;
+import io.swagger.annotations.ApiModelProperty;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,6 +48,11 @@ public class BookServiceImpl implements BookService {
     @Override
     public TbBook selectBookByNumber(long book_number) {
         return mapper.selectBookByNumber(book_number);
+    }
+
+    @Override
+    public TbBook selectBookById(long bookId) {
+        return mapper.selectBookById(bookId);
     }
 
 

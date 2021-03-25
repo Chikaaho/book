@@ -34,15 +34,15 @@ public class UserController {
             model.addAttribute("LOGIN_ERROR_MESSAGE", "账号或密码错误，请重新输入。");
             return "login";
         }
-        return "index";
+        return "books/index";
     }
 
     @PostMapping("/regist.do")
     @ApiModelProperty("注册")
     public String registUser(@RequestParam TbUser user) {
         int i = userService.registUser(user);
-        if (i == 1) { return "index"; }
-        else { return ""; }
+        if (i == 1) { return "login"; }
+        else { return "error/regist_error"; }
     }
 
 }

@@ -14,6 +14,13 @@ public class TbBook {
     public TbBook() {
     }
 
+    public TbBook(String bookName, String bookMsg, long bookStock, long bookNumber) {
+        this.bookName = bookName;
+        this.bookMsg = bookMsg;
+        this.bookStock = bookStock;
+        this.bookNumber = bookNumber;
+    }
+
     public TbBook(long bookId, String bookName, String bookMsg, long bookStock, long bookNumber) {
         this.bookId = bookId;
         this.bookName = bookName;

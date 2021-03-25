@@ -19,15 +19,18 @@ public interface BookMapper {
     int addBook(@Param("book") TbBook book);
 
     @ApiModelProperty("修改书籍信息")
-    int updateBook(@Param("book_id") long book_id, @Param("book") TbBook book);
+    int updateBook(@Param("bookId") long bookId, @Param("book") TbBook book);
 
     @ApiModelProperty("删除书籍")
-    int removeBook(@Param("book_id") long book_id);
+    int removeBook(@Param("bookId") long bookId);
 
     @ApiModelProperty("根据名称查询")
-    TbBook selectBookByName(@Param("book_name") String book_name);
+    TbBook selectBookByName(@Param("bookName") String bookName);
 
     @ApiModelProperty("根据编号查询")
-    TbBook selectBookByNumber(@Param("book_number") long book_number);
+    TbBook selectBookByNumber(@Param("bookNumber") long bookNumber);
+
+    @ApiModelProperty("Id查询")
+    TbBook selectBookById(@Param("bookId") long bookId);
 
 }
