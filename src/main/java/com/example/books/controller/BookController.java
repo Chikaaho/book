@@ -24,7 +24,7 @@ public class BookController {
     @Autowired
     private BookServiceImpl bookService;
 
-    private final Map<String, Object> booksJson = new HashMap<String, Object>();
+    private final Map<String, Object> booksJson = new HashMap<>();
 
     @RequestMapping("/addBook")
     public String addBook(@RequestParam String bookName,
@@ -54,6 +54,24 @@ public class BookController {
                              @RequestParam long stock,
                              @RequestParam long number) {
         bookService.updateBook(bookId, new TbBook(bookName, bookMsg, stock, number));
+        return "books/index";
+    }
+
+    @RequestMapping("/toDeletePage")
+    public String toDeleteBook(@RequestParam long bookId) {
+        booksJson.clear();
+        booksJson.put("bookId", bookId);
+        return "operation/delete_check";
+    }
+
+    @RequestMapping("/Sub")/*submit*/
+    public String sub() {
+
+        return "";
+    }
+
+    @RequestMapping("/cancel")
+    public String cancel() {
         return "books/index";
     }
 
