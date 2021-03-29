@@ -24,8 +24,6 @@ public class UserController {
     @Autowired
     private UserServiceImpl userService;
 
-    private final Map<String, Object> userJson = new HashMap<String, Object>();
-
     @PostMapping("/loginCheck")
     @ApiModelProperty("登录验证")
     public String loginCheck(@RequestParam String username, @RequestParam String password, Model model) {
@@ -34,7 +32,7 @@ public class UserController {
             model.addAttribute("LOGIN_ERROR_MESSAGE", "账号或密码错误，请重新输入。");
             return "login";
         }
-        return "books/index";
+        return "forward:/books/toIndex";
     }
 
     @PostMapping("/regist.do")

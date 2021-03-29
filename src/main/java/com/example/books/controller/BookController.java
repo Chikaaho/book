@@ -3,6 +3,7 @@ package com.example.books.controller;
 import com.example.books.pojo.TbBook;
 import com.example.books.service.impl.BookServiceImpl;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,18 +34,7 @@ public class BookController {
                           @RequestParam long number) {
         TbBook tbBook = new TbBook(bookName, bookMsg, stock, number);
         bookService.addBook(tbBook);
-        return "operation/middle";
-    }
-
-    @RequestMapping("/toUpdatePage")
-    public String toUpdatePage(@RequestParam long bookId) {
-        TbBook tbBook = bookService.selectBookById(bookId);
-        booksJson.clear();
-        booksJson.put("bookNumber", tbBook.getBookNumber());
-        booksJson.put("bookStock", tbBook.getBookStock());
-        booksJson.put("bookMsg", tbBook.getBookMsg());
-        booksJson.put("bookName", tbBook.getBookName());
-        return "books/updatePage";
+        return "redirect:/books/toIndex";
     }
 
     @RequestMapping("/updateBook")
@@ -54,29 +44,18 @@ public class BookController {
                              @RequestParam long stock,
                              @RequestParam long number) {
         bookService.updateBook(bookId, new TbBook(bookName, bookMsg, stock, number));
-        return "books/index";
+        return "redirect:/books/toIndex";
     }
 
-    @RequestMapping("/toDeletePage")
+    @RequestMapping("/deleteBook")
+    @ApiModelProperty("删除书籍")
     public String toDeleteBook(@RequestParam long bookId) {
-        booksJson.clear();
-        booksJson.put("bookId", bookId);
-        return "operation/delete_check";
-    }
-
-    @RequestMapping("/Sub")/*submit*/
-    public String sub() {
-
-        return "";
-    }
-
-    @RequestMapping("/cancel")
-    public String cancel() {
-        return "books/index";
+        bookService.removeBook(bookId);
+        return "redirect:/books/toIndex";
     }
 
     /*
-    *   以下为json处理
+    *   以下为json处理servlet
     */
 
     @RequestMapping("/selectAll")
@@ -93,14 +72,21 @@ public class BookController {
     @RequestMapping("/updateBookData")
     @ResponseBody
     public Map<String, Object> bookData() {
+        TbBook tbBook = bookService.selectBookById((Long) booksJson.get("id"));
+        booksJson.clear();
+        booksJson.put("bookNumber", tbBook.getBookNumber());
+        booksJson.put("bookStock", tbBook.getBookStock());
+        booksJson.put("bookMsg", tbBook.getBookMsg());
+        booksJson.put("bookName", tbBook.getBookName());
         return booksJson;
     }
 
     /*
-    *   以下为页面跳转服务
+    *   以下为页面跳转servlet
     */
 
     @RequestMapping("/toIndex")
+    @ApiModelProperty("跳转到首页")
     public String toIndex() {
         return "books/index";
     }
@@ -108,6 +94,13 @@ public class BookController {
     @RequestMapping("/tpAddPage")
     public String toAddPage() {
         return "books/addBooks";
+    }
+
+    @RequestMapping("/toUpdatePage")
+    public String toUpdatePage(@RequestParam long id) {
+        booksJson.clear();
+        booksJson.put("id", id);
+        return "books/updatePage";
     }
 
 }
