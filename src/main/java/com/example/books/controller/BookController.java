@@ -54,6 +54,20 @@ public class BookController {
         return "redirect:/books/toIndex";
     }
 
+    @RequestMapping("/selectBookByNumber")
+    public String selectBookByNumber(@RequestParam long bookNumber) {
+        booksJson.clear();
+        booksJson.put("bookNumber", bookNumber);
+        return "forward:/books/toIndex";
+    }
+
+    @RequestMapping("/selectBookByName")
+    public String selectBookByName(@RequestParam String bookName) {
+        booksJson.clear();
+        booksJson.put("bookName", bookName);
+        return "forward:/books/toIndex";
+    }
+
     /*
     *   以下为json处理servlet
     */
@@ -71,8 +85,32 @@ public class BookController {
 
     @RequestMapping("/updateBookData")
     @ResponseBody
-    public Map<String, Object> bookData() {
+    public Map<String, Object> updateBookData() {
         TbBook tbBook = bookService.selectBookById((Long) booksJson.get("id"));
+        booksJson.clear();
+        booksJson.put("bookNumber", tbBook.getBookNumber());
+        booksJson.put("bookStock", tbBook.getBookStock());
+        booksJson.put("bookMsg", tbBook.getBookMsg());
+        booksJson.put("bookName", tbBook.getBookName());
+        return booksJson;
+    }
+
+    @RequestMapping("/selectByNumberData")
+    @ResponseBody
+    public Map<String, Object> selectBookDataByNumber() {
+        TbBook tbBook = bookService.selectBookByNumber((Long) booksJson.get("bookNumber"));
+        booksJson.clear();
+        booksJson.put("bookNumber", tbBook.getBookNumber());
+        booksJson.put("bookStock", tbBook.getBookStock());
+        booksJson.put("bookMsg", tbBook.getBookMsg());
+        booksJson.put("bookName", tbBook.getBookName());
+        return booksJson;
+    }
+
+    @RequestMapping("/selectByNameData")
+    @ResponseBody
+    public Map<String, Object> selectBookDataByName() {
+        TbBook tbBook = bookService.selectBookByName((String) booksJson.get("bookName"));
         booksJson.clear();
         booksJson.put("bookNumber", tbBook.getBookNumber());
         booksJson.put("bookStock", tbBook.getBookStock());
