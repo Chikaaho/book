@@ -1,10 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<style>
 
+    .inp {
+        display: block;
+        margin-top: 30px;
+        width: 400px;
+    }
+
+    #Addbook {
+        height: 400px;
+        width: 500px;
+        border: 1px solid black;
+    }
+</style>
+<link rel="stylesheet" href="../../static/dhl.css">
+<body style="margin: 0">
+<ul id="nav">
+    <li><a th:href="@{/books/toIndex}">首页</a></li>
+    <li><a th:href="@{/books/tpAddPage}">添加图书</a></li>
+    <li><a th:href="@{/books/toUpdatePage}">更新图书</a></li>
+</ul>
+<table style=" border:0">
+    <tr>
+        <th style="width:1500px; height:150px; border:1px;">
+            <center>
+                <table>
+                    <th style="font-size: 50px;color: #fd7e14">上传图书</th>
+                </table>
+            </center>
+        </th>
+    </tr>
+</table>
+<center>
+    <div id="Addbook">
+        <form action="/books/addBook" method="post">
+            <input id="bkname" class="inp" type="text" name="bookName" placeholder="请输入书名">
+            <input id="bkdetail" class="inp" type="text" style="height: 200px;" name="bookMsg" placeholder="请输入图书简介">
+            <input id="bkstock" class="inp" type="text" name="bookStock" placeholder="请输入图书库存">
+            <input id="bknum" class="inp" type="text" name="bookNumber" placeholder="请输入图书编号">
+            <input type="submit" value="提交" style="margin-top: 30px" >
+        </form>
+
+    </div>
+</center>
 </body>
 </html>
+<script src="../../static/axios-master/dist/axios.js"></script>
+<script src="../../static/vue/vue.js"></script>
+<script type="text/javascript" src="/static/jquery-3.5.1.min.js"></script>
+<script>
+    axios.defaults.headers.post['contentType'] = 'application/json'
+    const vue = new Vue({
+        el: "Addbook",
+        data() {
+            return {
+                info: {
+                    bookId: null,
+                    bookName: null,
+                    bookMsg: null,
+                    bookStock: null,
+                    bookNumber: null
+                }
+            }
+        }, mounted() {
+            axios.post('http://localhost:8080/addbook').then(response => (this.info = response))
+        }
+    });
+    /*.then(function (response){
+        if(response==1){
+            alert("添加成功")
+        }
+        else{
+            alert("添加失败")
+        }
+    })*/
+</script>

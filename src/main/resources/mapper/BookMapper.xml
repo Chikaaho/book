@@ -5,26 +5,26 @@
         <id column="book_id" jdbcType="BIGINT" property="bookId"/>
         <id column="book_name" jdbcType="VARCHAR" property="bookName"/>
         <id column="book_msg" jdbcType="VARCHAR" property="bookMsg"/>
-        <id column="book_stock" jdbcType="INTEGER" property="bookStock"/>
-        <id column="book_number" jdbcType="INTEGER" property="bookNumber"/>
+        <id column="book_stock" jdbcType="BIGINT" property="bookStock"/>
+        <id column="book_number" jdbcType="BIGINT" property="bookNumber"/>
     </resultMap>
-    <insert id="addBook" parameterType="int">
+    <insert id="addBook" keyProperty="bookId">
         insert into db_library.tb_books
             (book_name, book_msg, book_stock, book_number)
-        values (#{book.getBookName()}, #{book.getBookMsg()}, #{book.getBookStock()}, #{book.getBookNumber()});
+        values (#{bookName}, #{bookMsg}, #{bookStock}, #{bookNumber});
     </insert>
-    <update id="updateBook" parameterType="int">
+    <update id="updateBook" keyProperty="bookId">
         update db_library.tb_books
-        set book_name   = #{book.getBookName()},
-            book_msg    = #{book.getBookMsg()},
-            book_stock  = #{book.getBookStock()},
-            book_number = #{book.getBookNumber()}
-        where book_id = #{book_id};
+        set book_name = #{bookName},
+            book_msg = #{bookMsg},
+            book_stock = #{bookStock},
+            book_number = #{bookNumber}
+        where book_id = #{bookId};
     </update>
-    <delete id="removeBook" parameterType="int">
+    <delete id="removeBook">
         delete
         from db_library.tb_books
-        where book_id = #{book_id};
+        where book_id = #{bookId};
     </delete>
     <select id="selectBook" resultType="com.example.books.pojo.TbBook" parameterType="List">
         select *
@@ -34,13 +34,13 @@
             parameterType="com.example.books.pojo.TbBook">
         select *
         from db_library.tb_books
-        where book_number like #{%book_number%};
+        where book_number like #{bookNumber};
     </select>
     <select id="selectBookByName" resultType="com.example.books.pojo.TbBook"
             parameterType="com.example.books.pojo.TbBook">
         select *
         from db_library.tb_books
-        where book_name like #{book_name};
+        where book_name like #{bookName};
     </select>
     <select id="selectBookById" resultType="com.example.books.pojo.TbBook"
             parameterType="com.example.books.pojo.TbBook">

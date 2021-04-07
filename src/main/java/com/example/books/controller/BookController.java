@@ -7,10 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -30,10 +27,9 @@ public class BookController {
     @RequestMapping("/addBook")
     public String addBook(@RequestParam String bookName,
                           @RequestParam String bookMsg,
-                          @RequestParam long stock,
-                          @RequestParam long number) {
-        TbBook tbBook = new TbBook(bookName, bookMsg, stock, number);
-        bookService.addBook(tbBook);
+                          @RequestParam long bookStock,
+                          @RequestParam long bookNumber) {
+        bookService.addBook(bookName, bookMsg, bookStock, bookNumber);
         return "redirect:/books/toIndex";
     }
 
@@ -43,7 +39,7 @@ public class BookController {
                              @RequestParam String bookMsg,
                              @RequestParam long stock,
                              @RequestParam long number) {
-        bookService.updateBook(bookId, new TbBook(bookName, bookMsg, stock, number));
+        bookService.updateBook(bookId, bookName, bookMsg, stock, number);
         return "redirect:/books/toIndex";
     }
 
@@ -55,7 +51,7 @@ public class BookController {
     }
 
     @RequestMapping("/selectBookByNumber")
-    public String selectBookByNumber(@RequestParam long bookNumber) {
+    public String selectBookByNumber(@RequestParam int bookNumber) {
         booksJson.clear();
         booksJson.put("bookNumber", bookNumber);
         return "forward:/books/toIndex";
@@ -69,8 +65,8 @@ public class BookController {
     }
 
     /*
-    *   以下为json处理servlet
-    */
+     *   以下为json处理servlet
+     */
 
     @RequestMapping("/selectAll")
     @ResponseBody
@@ -86,7 +82,7 @@ public class BookController {
     @RequestMapping("/updateBookData")
     @ResponseBody
     public Map<String, Object> updateBookData() {
-        TbBook tbBook = bookService.selectBookById((Long) booksJson.get("id"));
+        TbBook tbBook = bookService.selectBookById((Integer) booksJson.get("id"));
         booksJson.clear();
         booksJson.put("bookNumber", tbBook.getBookNumber());
         booksJson.put("bookStock", tbBook.getBookStock());
@@ -98,7 +94,7 @@ public class BookController {
     @RequestMapping("/selectByNumberData")
     @ResponseBody
     public Map<String, Object> selectBookDataByNumber() {
-        TbBook tbBook = bookService.selectBookByNumber((Long) booksJson.get("bookNumber"));
+        TbBook tbBook = bookService.selectBookByNumber((int) booksJson.get("bookNumber"));
         booksJson.clear();
         booksJson.put("bookNumber", tbBook.getBookNumber());
         booksJson.put("bookStock", tbBook.getBookStock());
@@ -120,8 +116,8 @@ public class BookController {
     }
 
     /*
-    *   以下为页面跳转servlet
-    */
+     *   以下为页面跳转servlet
+     */
 
     @RequestMapping("/toIndex")
     @ApiModelProperty("跳转到首页")
@@ -135,9 +131,8 @@ public class BookController {
     }
 
     @RequestMapping("/toUpdatePage")
-    public String toUpdatePage(@RequestParam long id) {
-        booksJson.clear();
-        booksJson.put("id", id);
+    public String toUpdatePage() {
+
         return "books/updatePage";
     }
 

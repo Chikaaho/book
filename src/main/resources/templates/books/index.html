@@ -2,11 +2,40 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Index</title>
-    <script src="../../static/vue/vue.js"></script>
-    <script src="../../static/axios-master/dist/axios.js"></script>
+    <title>Title</title>
 </head>
-<body>
+<style>
 
+    .inp{
+        margin-top: 40px;
+    }
+</style>
+<link rel="stylesheet" href="../../static/dhl.css">
+<body>
+<ul id="nav">
+    <li><a href="/books/toIndex">首页</a></li>
+    <li><a href="/books/tpAddPage">借阅图书</a></li>
+    <li><a href="/books/toUpdatePage">更新图书</a></li>
+</ul>
+<table style=" border:0">
+    <tr>
+        <th style="width:2000px; height:150px; border:1px;" >
+            <center>
+                <table>
+                    <p style="font-size: 50px;color: #fd7e14">图书管理系统 </p>
+                </table>
+            </center>
+        </th>
+    </tr>
+</table>
+<center>
+    <div>本项目的主旨在于方便学校里的同学借阅图书，能够更加方便的操作图书系统，激发同学们阅读的积极性。</div>
+    <br>
+    <div>该项目运用了SpringBoot+Mybatis-plus的框架，同时运用了jQuery + Vue的技术在前端进行构建页面，以MySQL作为数据库进行网页的搭建</div>
+    <div style="margin-top: 50px">
+        <img src="../../static/img/library.jpg" alt="">
+    </div>
+    <div style="position: fixed;bottom: 0;left: 50%;right: 50%;width: 100px">&copy;由XXX制作</div>
+</center>
 </body>
 </html>

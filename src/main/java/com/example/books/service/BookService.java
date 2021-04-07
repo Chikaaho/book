@@ -14,10 +14,17 @@ public interface BookService {
     List<TbBook> selectBook();
 
     @ApiModelProperty("新增书籍")
-    int addBook(@Param("book") TbBook book);
+    int addBook(@Param("bookName") String bookName
+            , @Param("bookMsg") String bookMsg
+            , @Param("bookStock") long bookStock
+            , @Param("bookNumber") long bookNumber);
 
     @ApiModelProperty("修改书籍信息")
-    int updateBook(@Param("book_id") long book_id, @Param("book") TbBook book);
+    int updateBook(@Param("bookId") long bookId
+            ,@Param("bookName") String bookName
+            , @Param("bookMsg") String bookMsg
+            , @Param("bookStock") long bookStock
+            , @Param("bookNumber") long bookNumber);
 
     @ApiModelProperty("删除书籍")
     int removeBook(@Param("book_id") long book_id);

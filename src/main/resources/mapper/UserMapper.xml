@@ -5,28 +5,28 @@
         <id column="user_id" jdbcType="BIGINT" property="userId"/>
         <id column="username" jdbcType="VARCHAR" property="username"/>
         <id column="password" jdbcType="VARCHAR" property="password"/>
-        <id column="user_number" jdbcType="INTEGER" property="userNumber"/>
+        <id column="user_number" jdbcType="BIGINT" property="userNumber"/>
         <id column="classname" jdbcType="VARCHAR" property="classname"/>
     </resultMap>
-    <insert id="registUser" parameterType="int">
+    <insert id="registUser" keyProperty="userId">
         insert into db_library.tb_users
             (username, password, user_number, classname)
         values
-            (#{user.getUsername()}, #{user.getPassword()}, #{user.getUserNumber}, #{user.getClassname});
+            (#{username}, #{password}, #{userNumber}, #{classname});
     </insert>
-    <update id="updateUser" parameterType="int">
+    <update id="updateUser">
         update db_library.tb_users
         set
-            username = #{user.getUsername()},
-            password = #{user.getPassword()},
-            user_number = #{user.getUserNumber},
-            classname = #{user.getClassname}
-        where user_id = #{user_id}
+            username = #{username},
+            password = #{password},
+            user_number = #{userNumber},
+            classname = #{classname}
+        where user_id = #{userId}
     </update>
-    <delete id="removeUser" parameterType="int">
+    <delete id="removeUser">
         delete
         from db_library.tb_users
-        where user_id = #{user_id}
+        where user_id = #{userId}
     </delete>
     <select id="selectUserByName" resultType="com.example.books.pojo.TbUser">
         select *
@@ -38,7 +38,7 @@
     <select id="selectUserByNumber" resultType="com.example.books.pojo.TbUser">
         select *
         from db_library.tb_users
-        where user_number like #{%user_number%}
+        where user_number = #{user_number}
     </select>
     <select id="selectUserByClassName" resultType="com.example.books.pojo.TbUser">
         select *

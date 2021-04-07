@@ -1,6 +1,7 @@
 package com.example.books.pojo;
 
 
+
 import java.util.Objects;
 
 public class TbUser {
@@ -14,8 +15,7 @@ public class TbUser {
     public TbUser() {
     }
 
-    public TbUser(long userId, String username, String password, long userNumber, String classname) {
-        this.userId = userId;
+    public TbUser(String username, String password, long userNumber, String classname) {
         this.username = username;
         this.password = password;
         this.userNumber = userNumber;
@@ -89,7 +89,7 @@ public class TbUser {
                 "userId=" + userId +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", userNumber=" + userNumber +
+                ", user_number=" + userNumber +
                 ", classname='" + classname + '\'' +
                 '}';
     }

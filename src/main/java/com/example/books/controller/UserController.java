@@ -7,13 +7,9 @@ import io.swagger.annotations.ApiModelProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/user")
@@ -37,10 +33,19 @@ public class UserController {
 
     @PostMapping("/regist.do")
     @ApiModelProperty("注册")
-    public String registUser(@RequestParam TbUser user) {
-        int i = userService.registUser(user);
-        if (i == 1) { return "login"; }
-        else { return "error/regist_error"; }
+    public String registUser(
+                            @RequestParam String username,
+                            @RequestParam String password,
+                            @RequestParam long userNumber,
+                            @RequestParam String classname,
+                            Model model) {
+        userService.registUser(username, password, userNumber, classname);
+        return "redirect:/login";
+    }
+
+    @RequestMapping("/toRegistPage")
+    public String toRegistPage() {
+        return "user/register";
     }
 
 }

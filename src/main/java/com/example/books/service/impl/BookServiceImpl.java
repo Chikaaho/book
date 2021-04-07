@@ -24,30 +24,37 @@ public class BookServiceImpl implements BookService {
 
     @Override
     @Transactional
-    public int addBook(TbBook book) {
-        return mapper.addBook(book);
+    public int addBook(@Param("bookName") String bookName
+            , @Param("bookMsg") String bookMsg
+            , @Param("bookStock") long bookStock
+            , @Param("bookNumber") long bookNumber) {
+        return mapper.addBook(bookName, bookMsg, bookStock, bookNumber);
     }
 
     @Override
     @Transactional
-    public int updateBook(long book_id, TbBook book) {
-        return mapper.updateBook(book_id, book);
+    public int updateBook(@Param("bookId") long bookId
+            , @Param("bookName") String bookName
+            , @Param("bookMsg") String bookMsg
+            , @Param("bookStock") long bookStock
+            , @Param("bookNumber") long bookNumber) {
+        return mapper.updateBook(bookId, bookName, bookMsg, bookStock, bookNumber);
     }
 
     @Override
     @Transactional
-    public int removeBook(long book_id) {
-        return mapper.removeBook(book_id);
+    public int removeBook(long bookId) {
+        return mapper.removeBook(bookId);
     }
 
     @Override
-    public TbBook selectBookByName(String book_name) {
-        return mapper.selectBookByName(book_name);
+    public TbBook selectBookByName(String bookName) {
+        return mapper.selectBookByName(bookName);
     }
 
     @Override
-    public TbBook selectBookByNumber(long book_number) {
-        return mapper.selectBookByNumber(book_number);
+    public TbBook selectBookByNumber(long bookNumber) {
+        return mapper.selectBookByNumber(bookNumber);
     }
 
     @Override

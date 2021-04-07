@@ -3,15 +3,14 @@ package com.example.books.service.impl;
 import com.example.books.mapper.UserMapper;
 import com.example.books.pojo.TbUser;
 import com.example.books.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.annotation.Resource;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Resource
+    @Autowired
     private UserMapper mapper;
 
     @Override
@@ -20,15 +19,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
-    public int registUser(TbUser user) {
-        TbUser tbUser = mapper.selectUserByNumber(user.getUserNumber());
-        if (tbUser != null) { return 1; }
-        else {
-            mapper.registUser(user);
-            return 0;
-        }
+    public int registUser(String username, String password, long userNumber, String classname) {
+        return mapper.registUser(username, password, userNumber, classname);
     }
+
 
     @Override
     @Transactional
