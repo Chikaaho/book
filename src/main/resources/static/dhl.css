@@ -1,0 +1,27 @@
+    body{
+        margin: 0;
+        padding: 0;
+    }
+    ul#nav {
+        width: 1496px;
+        height: 60px;
+        background: #00A2CA;
+        margin: 0 auto
+    }
+    ul#nav li {
+        display: inline;
+        height: 60px
+    }
+    ul#nav li a {
+        text-decoration: none;
+        display: inline-block;
+        padding: 0 210px;
+        height: 60px;
+        line-height: 60px;
+        color: #FFF;
+        font-family: "\5FAE\8F6F\96C5\9ED1";
+        font-size: 16px
+    }
+    ul#nav li a:hover {
+        background: #0095BB
+    }
