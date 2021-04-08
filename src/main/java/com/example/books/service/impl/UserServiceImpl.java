@@ -23,7 +23,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int registUser(String username, String password, long userNumber, String classname) {
-        return mapper.registUser(username, password, userNumber, classname);
+        TbUser tbUser = mapper.selectUserByNumber(userNumber);
+        return tbUser == null ? mapper.registUser(username, password, userNumber, classname) : 0;
     }
 
 

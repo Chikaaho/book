@@ -42,8 +42,13 @@ public class UserController {
                             @RequestParam long userNumber,
                             @RequestParam String classname,
                             Model model) {
-        userService.registUser(username, password, userNumber, classname);
-        return "redirect:/login";
+        int regist = userService.registUser(username, password, userNumber, classname);
+        if (regist == 0b0001) {
+            return "forward:/login";
+        } else {
+            model.addAttribute("REGIST_ERROR_MESSAGE", "注册失败，请重试。");
+            return "redirect:/user/toRegistPage";
+        }
     }
 
     @RequestMapping("/toRegistPage")

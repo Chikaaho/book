@@ -21,15 +21,7 @@ class BooksApplicationTests {
 
     @Test
     void contextLoads() {
-        String username, password;
-        username = "zs";
-        password = "zs123";
-        System.out.println("1");
-        try {
-            System.out.println(userService.selectUser(username, password));
-        } catch (NullPointerException e) {
-            System.out.println("NullPointerException");
-        }
+        System.out.println((1 << 2 & 0b1111));
     }
 
 }
