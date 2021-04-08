@@ -6,10 +6,12 @@ import io.swagger.annotations.ApiModelProperty;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Mapper
+@Repository
 public interface BookMapper {
 
     @ApiModelProperty("查询所有书籍信息")

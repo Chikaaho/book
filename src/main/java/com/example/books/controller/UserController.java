@@ -17,8 +17,11 @@ import java.util.*;
 @ApiModel("用户控制")
 public class UserController {
 
-    @Autowired
     private UserServiceImpl userService;
+    @Autowired
+    public void setUserService (UserServiceImpl userService) {
+        this.userService = userService;
+    }
 
     @PostMapping("/loginCheck")
     @ApiModelProperty("登录验证")

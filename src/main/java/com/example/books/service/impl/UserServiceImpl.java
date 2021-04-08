@@ -10,8 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
     private UserMapper mapper;
+    @Autowired
+    public void setMapper(UserMapper mapper) {
+        this.mapper = mapper;
+    }
 
     @Override
     public TbUser selectUser(String username, String password) {

@@ -19,8 +19,11 @@ import java.util.Map;
 @CrossOrigin
 public class BookController {
 
-    @Autowired
     private BookServiceImpl bookService;
+    @Autowired
+    public void setBookService(BookServiceImpl bookService) {
+        this.bookService = bookService;
+    }
 
     private final Map<String, Object> booksJson = new HashMap<>();
 

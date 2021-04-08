@@ -5,6 +5,7 @@ import com.example.books.pojo.TbBook;
 import com.example.books.service.BookService;
 import io.swagger.annotations.ApiModelProperty;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,8 +15,11 @@ import java.util.List;
 @Service
 public class BookServiceImpl implements BookService {
 
-    @Resource
     private BookMapper mapper;
+    @Autowired
+    public void setMapper(BookMapper mapper) {
+        this.mapper = mapper;
+    }
 
     @Override
     public List<TbBook> selectBook() {
