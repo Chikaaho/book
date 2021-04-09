@@ -1,7 +1,10 @@
 package com.example.books;
 
+import com.example.books.mapper.BookMapper;
 import com.example.books.mapper.UserMapper;
+import com.example.books.service.BookService;
 import com.example.books.service.UserService;
+import com.example.books.service.impl.BookServiceImpl;
 import com.example.books.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.annotation.MapperScan;
@@ -13,15 +16,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 class BooksApplicationTests {
 
     @Autowired
-    private UserMapper mapper;
+    private BookMapper mapper;
     @Autowired
-    private UserServiceImpl service;
+    private BookServiceImpl service;
     @Autowired
-    private UserService userService;
+    private BookService bookService;
 
     @Test
     void contextLoads() {
-        System.out.println((1 << 2 & 0b1111));
+        int i = service.updateBook(1, "Java核心技术", "从入门到入坟", 500, 1001);
+        System.out.println(i);
     }
 
 }

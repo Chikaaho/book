@@ -6,19 +6,31 @@
 </head>
 <style>
 
+<<<<<<< HEAD
+    .inp{
+=======
     .inp {
+>>>>>>> origin/master
         display: block;
         margin-top: 30px;
         width: 400px;
     }
+<<<<<<< HEAD
+    #Addbook{
+=======
 
     #Addbook {
+>>>>>>> origin/master
         height: 400px;
         width: 500px;
         border: 1px solid black;
     }
 </style>
+<<<<<<< HEAD
 <link rel="stylesheet" href="../../static/dhl.css">
+=======
+<link rel="stylesheet" href="../../static/dhl.css">
+>>>>>>> origin/master
 <body style="margin: 0">
 <ul id="nav">
     <li><a th:href="@{/books/toIndex}">首页</a></li>
@@ -27,16 +39,50 @@
 </ul>
 <table style=" border:0">
     <tr>
+<<<<<<< HEAD
+        <th style="width:1500px; height:150px; border:1px;" >
+            <center>
+                <table>
+                    <th style="font-size: 50px;color: #fd7e14">上传图书 </th>
+=======
         <th style="width:1500px; height:150px; border:1px;">
             <center>
                 <table>
                     <th style="font-size: 50px;color: #fd7e14">上传图书</th>
+>>>>>>> origin/master
                 </table>
             </center>
         </th>
     </tr>
 </table>
 <center>
+<<<<<<< HEAD
+    <div id="Addbook" >
+
+        <input id="bkname" class="inp" type="text" placeholder="请输入书名">
+        <input id="bkdetail" class="inp" type="text" style="height: 200px;" placeholder="请输入图书简介">
+        <input id="bkstock" class="inp" type="text" placeholder="请输入图书库存">
+        <input id="bknum" class="inp" type="text" placeholder="请输入图书编号">
+        <input type="button" value="提交" style="margin-top: 30px" onclick="addbook()">
+    </div>
+</body>
+</html>
+<script src="https://unpkg.com/axios@0.18.0/dist/axios.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript" src="jquery-3.5.1.min.js"></script>
+<script>
+function addbook() {
+    axios.defaults.headers.post['contentType'] = 'application/json'
+    axios.post('http://localhost:8080/addbook',{
+        bkname:$('#bkname').val(),
+        bkdetail:$('#bkdetail').val(),
+        bkstock:$('#bkstock').val(),
+        bknum:$('#bknunm').val()
+    }).then(function (){
+
+    })
+}
+=======
     <div id="Addbook">
         <form action="/books/addBook" method="post">
             <input id="bkname" class="inp" type="text" name="bookName" placeholder="请输入书名">
@@ -79,4 +125,5 @@
             alert("添加失败")
         }
     })*/
+>>>>>>> origin/master
 </script>

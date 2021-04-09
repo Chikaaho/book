@@ -21,7 +21,11 @@ public interface UserMapper {
             , @Param("classname") String classname);
 
     @ApiModelProperty("修改用户信息")
-    int updateUser(@Param("user_id") long user_id, @Param("user") TbUser user);
+    int updateUser(@Param("user_id") long user_id
+            , @Param("username") String username
+            , @Param("password") String password
+            , @Param("userNumber") long userNumber
+            , @Param("classname") String classname);
 
     @ApiModelProperty("注销用户")
     int removeUser(@Param("user_id") long user_id);

@@ -27,11 +27,10 @@ public class UserServiceImpl implements UserService {
         return tbUser == null ? mapper.registUser(username, password, userNumber, classname) : 0;
     }
 
-
     @Override
     @Transactional
-    public int updateUser(long user_id, TbUser user) {
-        return mapper.updateUser(user_id, user);
+    public int updateUser(long user_id, String username, String password, long userNumber, String classname) {
+        return mapper.updateUser(user_id, username, password, userNumber, classname);
     }
 
     @Override
