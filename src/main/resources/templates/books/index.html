@@ -1,24 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>首页</title>
 </head>
-
+<style>
+    .but {
+        width: 80px;
+        padding: 8px;
+        background-color: green;
+        color: #fff;
+        border-radius: 10px;
+        text-align: center;
+        vertical-align: middle;
+        font-weight: 900;
+    }
+    #logout:visited {
+        color: #fff;
+    }
+    .but:hover {
+        cursor: pointer;
+    }
+</style>
 <link rel="stylesheet" href="../../static/dhl.css">
 <link rel="icon" href="../../static/Icons/trans3.ico">
 <body>
 <ul id="nav">
-    <li><a href="/books/toIndex">首页</a></li>
-    <li><a href="/books/tpAddPage">添加图书</a></li>
-    <li><a href="/books/toUpdatePage">更新图书</a></li>
+    <li><a th:href="@{/books/toIndex}">首页</a></li>
+    <li><a th:href="@{/books/tpAddPage}">添加图书</a></li>
+    <li><a th:href="@{/books/toUpdatePage}">更新图书</a></li>
 </ul>
+<div class="but" style="background-color: black;right:2%;top:12%;position: absolute">
+    <a th:href="@{/user/logout}" id="logout" style="text-decoration: none">注销</a>
+</div>
 <table style=" border:0">
     <tr>
-        <th style="width:2000px; height:150px; border:1px;" >
+        <th style="width:2000px; height:150px; border:1px;">
             <center>
                 <table>
-                    <th style="font-size: 50px;color: #fd7e14">图书管理系统 </th>
+                    <th style="font-size: 50px;color: #fd7e14">图书管理系统</th>
                 </table>
             </center>
         </th>

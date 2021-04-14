@@ -5,27 +5,35 @@
     <title>错误信息</title>
 </head>
 <style>
+    a:visited {
+        color: #fd7e14
+    }
 
-    #info{
+    #info {
         height: 300px;
         width: 500px;
         border: 2px solid black;
         margin: 0 auto;
+        font-family: Monospace, serif;
     }
+
 </style>
 <link rel="stylesheet" href="../../static/dhl.css">
 <link rel="icon" href="../../static/Icons/trans3.ico">
 <body>
 <table style=" border:0">
     <tr>
-        <th style="width:2000px; height:150px; border:1px;" >
+        <th style="width:2000px; height:150px; border:1px;">
             <center>
                 <table>
-                    <th style="font-size: 50px;color: #fd7e14">请先登录</th>
+                    <th style="font-size: 50px;color: #fd7e14">请先<a th:href="@{/}" style="text-decoration: none">登录</a>
+                    </th>
                 </table>
             </center>
         </th>
     </tr>
 </table>
+<div style="position: fixed;bottom: 0;left: 50%;right: 50%;width: 100px">&copy;由XXX制作</div>
+
 </body>
 </html>

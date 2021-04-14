@@ -151,7 +151,6 @@ public class BookController {
 
     @RequestMapping("/toUpdatePage")
     public String toUpdatePage() {
-
         return "books/updatePage";
     }
 

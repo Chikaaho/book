@@ -32,13 +32,13 @@
 </table>
 <center>
     <div id="login" style="font-weight: bolder;width: 700px;height: 480px;border: 1px black solid;border-radius: 2%">
-        <form action="/user/loginCheck" method="POST">
+        <form th:action="@{/login.}" method="POST">
             <div><img src="../static/img/index_logo.jpg" alt="图书馆" style="border-radius: 30%;width: 150px;height: 150px"
                       class="inp"></div>
             <div>账号：<input type="text" class="inp" id="user" name="username"></div>
             <div>密码：<input type="password" class="inp" id="passwprd" name="password"></div>
             <div><input type="submit" value="登录" class="inp"></div>
-            <div class="inp"><a th:href="@{/user/register}" style="text-decoration: none;color: #473C8B">还没有账号？点击我来注册一个</a>
+            <div class="inp"><a th:href="@{/user/toRegistPage}" style="text-decoration: none;color: #473C8B">还没有账号？点击我来注册一个</a>
             </div>
         </form>
         <P style="color: red;" th:text="${LOGIN_ERROR_MESSAGE}"></P>

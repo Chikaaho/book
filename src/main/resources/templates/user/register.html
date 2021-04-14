@@ -28,7 +28,7 @@
 </table>
 <center>
     <div id="register" style="font-weight: bolder;width: 700px;height: 600px;border: 1px black solid;border-radius: 2%">
-        <form action="/user/regist.do" method="post">
+        <form th:action="@{/user/regist.do}" method="post">
             <div><img src="../../static/img/index_logo.jpg" alt="图书馆"
                       style="border-radius: 30%;width: 150px;height: 150px" class="inp"></div>
             <div>账号：<input type="text" class="inp" id="user" name="username"></div>
@@ -37,8 +37,8 @@
             <div>编号：<input type="text" class="inp" id="num" name="userNumber"></div>
             <div>（请输入8位以内的数字）</div>
             <div>部门：<input type="text" class="inp" id="callname" name="classname"></div>
+            <div><input type="submit" value="注册" class="inp"></div>
         </form>
-        <div><input type="submit" value="注册" class="inp"></div>
     </div>
 </center>
 </body>
