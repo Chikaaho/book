@@ -23,7 +23,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/loginCheck")
+    @RequestMapping("/loginCheck")
     @ApiModelProperty("登录验证")
     public String loginCheck(@RequestParam String username, @RequestParam String password, Model model) {
         TbUser tbUser = userService.selectUser(username, password);
@@ -31,7 +31,7 @@ public class UserController {
             model.addAttribute("LOGIN_ERROR_MESSAGE", "账号或密码错误，请重新输入。");
             return "login";
         }
-        return "forward:/books/toIndex";
+        return "redirect:/books/toIndex";
     }
 
     @PostMapping("/regist.do")
@@ -43,7 +43,7 @@ public class UserController {
                             @RequestParam String classname,
                             Model model) {
         int regist = userService.registUser(username, password, userNumber, classname);
-        if (regist == 0b0001) {
+        if (regist == 1) {
             return "forward:/login";
         } else {
             model.addAttribute("REGIST_ERROR_MESSAGE", "注册失败，请重试。");

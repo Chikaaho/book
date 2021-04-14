@@ -17,15 +17,19 @@ class BooksApplicationTests {
 
     @Autowired
     private BookMapper mapper;
-    @Autowired
+
     private BookServiceImpl service;
     @Autowired
     private BookService bookService;
 
+    @Autowired
+    public void setService(BookServiceImpl service) {
+        this.service = service;
+    }
+
     @Test
     void contextLoads() {
-        int i = service.updateBook(1, "Java核心技术", "从入门到入坟", 500, 1001);
-        System.out.println(i);
+        System.out.println(service.selectBook());
     }
 
 }

@@ -33,7 +33,7 @@
         from db_library.tb_users
         where username
         like
-        #{%username%}
+        #{username}
     </select>
     <select id="selectUserByNumber" resultType="com.example.books.pojo.TbUser">
         select *
@@ -45,7 +45,7 @@
         from db_library.tb_users
         where classname
         like
-        #{%classname%}
+        #{classname}
     </select>
     <select id="selectUser" resultType="com.example.books.pojo.TbUser" parameterType="com.example.books.pojo.TbUser">
         select *

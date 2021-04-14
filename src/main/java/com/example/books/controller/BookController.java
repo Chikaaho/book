@@ -40,10 +40,26 @@ public class BookController {
     public String updateBook(@RequestParam long bookId,
                              @RequestParam String bookName,
                              @RequestParam String bookMsg,
-                             @RequestParam long stock,
-                             @RequestParam long number) {
-        bookService.updateBook(bookId, bookName, bookMsg, stock, number);
+                             @RequestParam long bookStock,
+                             @RequestParam long bookNumber) {
+        bookService.updateBook(bookId, bookName, bookMsg, bookStock, bookNumber);
         return "redirect:/books/toIndex";
+    }
+
+    @RequestMapping("/updateTest")
+    @ResponseBody
+    public Map<Object, Object> updateTest(@RequestParam Object bookId,
+                             @RequestParam Object bookName,
+                             @RequestParam Object bookMsg,
+                             @RequestParam Object bookStock,
+                             @RequestParam Object bookNumber) {
+        Map<Object, Object> map = new HashMap<>();
+        map.put("bookId",bookId);
+        map.put("bookName",bookName);
+        map.put("bookMsg",bookMsg);
+        map.put("bookStock",bookStock);
+        map.put("bookNumber",bookNumber);
+        return map;
     }
 
     @RequestMapping("/deleteBook")
