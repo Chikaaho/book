@@ -16,9 +16,9 @@ public class LoginInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession session = request.getSession();
         Enumeration<String> attributeNames = session.getAttributeNames();
-        String username = "";
+        String username = null;
         while (attributeNames.hasMoreElements()) {
-            username = (String) session.getAttribute(attributeNames.nextElement().toString());
+            username = (String) session.getAttribute(attributeNames.nextElement());
         }
         if (StringUtils.isEmpty(username) || username.trim().length() == 0) {
             response.sendRedirect(request.getContextPath() + "/user/loginError");
