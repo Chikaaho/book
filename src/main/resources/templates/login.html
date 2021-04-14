@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>登录</title>
 </head>
 <style>
 
@@ -40,7 +40,7 @@
             <div class="inp"><a th:href="@{/user/register}" style="text-decoration: none;color: red">还没有账号？点击我来注册一个</a>
             </div>
         </form>
-        <!--        <P th:text="${BOOK_NULL_MESSAGE}"></P>-->
+        <P th:text="${LOGIN_ERROR_MESSAGE}"></P>
     </div>
 </center>
 <div style="position: fixed;bottom: 0;left: 50%;right: 50%;width: 100px">&copy;由XXX制作</div>

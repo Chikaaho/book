@@ -8,8 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 
-import java.util.*;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/user")
@@ -23,13 +24,14 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping("/loginCheck")
+    @PostMapping("/loginCheck")
     @ApiModelProperty("登录验证")
-    public String loginCheck(@RequestParam String username, @RequestParam String password, Model model) {
+    public String loginCheck(@RequestParam String username, @RequestParam String password, Model model, HttpSession session) {
         TbUser tbUser = userService.selectUser(username, password);
+        session.setAttribute("username", tbUser.getUsername());
         if (tbUser == null) {
             model.addAttribute("LOGIN_ERROR_MESSAGE", "账号或密码错误，请重新输入。");
-            return "login";
+            return "/login";
         }
         return "redirect:/books/toIndex";
     }
@@ -51,9 +53,21 @@ public class UserController {
         }
     }
 
+    @RequestMapping("/logout")
+    public String logout(HttpSession session, SessionStatus sessionStatus){
+        session.invalidate();
+        sessionStatus.setComplete();
+        return "redirect:/";
+    }
+
     @RequestMapping("/toRegistPage")
     public String toRegistPage() {
         return "user/register";
+    }
+
+    @RequestMapping("/loginError")
+    public String toErrorPage() {
+        return "error/error";
     }
 
 }

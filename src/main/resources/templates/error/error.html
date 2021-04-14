@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>错误信息</title>
 </head>
 <style>
 
@@ -15,24 +15,16 @@
 </style>
 <link rel="stylesheet" href="../../static/dhl.css">
 <body>
-<ul id="nav">
-    <li><a th:href="@{/books/toIndex}">首页</a></li>
-    <li><a th:href="@{/books/tpAddPage}">添加图书</a></li>
-    <li><a th:href="@{/books/toUpdatePage}">更新图书</a></li>
-</ul>
 <table style=" border:0">
     <tr>
         <th style="width:2000px; height:150px; border:1px;" >
             <center>
                 <table>
-                    <th style="font-size: 50px;color: #fd7e14">错误信息</th>
+                    <th style="font-size: 50px;color: #fd7e14">请先登录</th>
                 </table>
             </center>
         </th>
     </tr>
 </table>
-<div id="info">
-    <p></p>
-</div>
 </body>
 </html>
